@@ -1,6 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
+      <!-- Standart Quasar toolbar -->
       <q-toolbar>
         <q-btn
           flat
@@ -10,11 +11,17 @@
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-
         <q-toolbar-title></q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
+      <!-- Test work panel button -->
+      <q-btn
+        flat
+        dense
+        round
+        icon="assignment_turned_in"
+        aria-label="TestPanel"
+        @click="rightDrawerOpen = !rightDrawerOpen"
+      />
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered content-class="bg-grey-1">
@@ -32,12 +39,14 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
+import TestPanel from 'components/TestPanel.vue'
 
 export default {
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
+    TestPanel
   },
 
   data() {
