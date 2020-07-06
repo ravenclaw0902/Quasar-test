@@ -1,37 +1,36 @@
 <template>
   <q-form>
-    <q-select outlined :options></q-select>
-
-    <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>{{ caption }}</q-item-label>
-    </q-item-section>
+    <q-list>
+      <q-item v-for="item in transport_types" :key="item['position']" tag="li">
+        <q-item-section>
+          <q-img :src="item['image_url']" style="height: auto; max-width: 150px"/>
+          <q-item-label>{{ item['title_en_us'] }}</q-item-label>
+        </q-item-section>
+      </q-item>
+    </q-list>
+    <q-select
+      v-model="setCurrency"
+      v-for="curr in currencies"
+      :key="curr['id']"
+      :options="curr['code']"
+      behavior="menu"
+      label="12345"
+    />
+    <q-select
+      v-model="setLanguage"
+      v-for="lang in languages"
+      :key="lang['id']"
+      :options="lang['lang_code']"
+      behavior="menu"
+      label="54321"
+    />
+    <q-btn flat dense round icon="check_circle" @click="acceptLang" aria-label="save"/>
   </q-form>
 </template>
 
 <script>
 export default {
   name: 'TestPanel',
-
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    caption: {
-      type: String,
-      default: ''
-    },
-    link: {
-      type: String,
-      default: '#'
-    },
-    icon: {
-      type: String,
-      default: ''
-    }
-  },
-
   data() {
     return {
       transport_types: [
@@ -1116,6 +1115,9 @@ export default {
         { id: 12, lang_code: 'tr_tr', lang_name: 'Türkçe' }
       ]
     }
+  },
+  methods: {
+    testFormChange() {}
   }
 }
 </script>

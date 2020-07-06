@@ -1,7 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <!-- Standart Quasar toolbar -->
       <q-toolbar>
         <q-btn
           flat
@@ -11,16 +10,7 @@
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-        <q-btn
-          flat
-          dense
-          round
-          icon="assignment_turned_in"
-          aria-label="Form"
-          @click="testFormOpen = !testFormOpen"
-        />
       </q-toolbar>
-      <!-- Test work panel button -->
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered content-class="bg-grey-1">
@@ -31,14 +21,9 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view/>
+      <!-- <router-view/> -->
       <!-- Test form -->
-      <q-drawer v-model="testFormOpen" show-if-above bordered content-class="bg-white">
-        <q-list>
-          <q-item-label header class="text-grey-8"></q-item-label>
-          <TestPanel v-for="item in testPanel" :key="item.title" v-bind="testForm"/>
-        </q-list>
-      </q-drawer>
+      <TestPanel/>
     </q-page-container>
   </q-layout>
 </template>
