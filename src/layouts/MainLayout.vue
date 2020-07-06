@@ -11,17 +11,16 @@
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-        <q-toolbar-title></q-toolbar-title>
+        <q-btn
+          flat
+          dense
+          round
+          icon="assignment_turned_in"
+          aria-label="Form"
+          @click="testFormOpen = !testFormOpen"
+        />
       </q-toolbar>
       <!-- Test work panel button -->
-      <q-btn
-        flat
-        dense
-        round
-        icon="assignment_turned_in"
-        aria-label="TestPanel"
-        @click="rightDrawerOpen = !rightDrawerOpen"
-      />
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered content-class="bg-grey-1">
@@ -33,6 +32,13 @@
 
     <q-page-container>
       <router-view/>
+      <!-- Test form -->
+      <q-drawer v-model="testFormOpen" show-if-above bordered content-class="bg-white">
+        <q-list>
+          <q-item-label header class="text-grey-8"></q-item-label>
+          <TestPanel v-for="item in testPanel" :key="item.title" v-bind="testForm"/>
+        </q-list>
+      </q-drawer>
     </q-page-container>
   </q-layout>
 </template>
